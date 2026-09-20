@@ -15,3 +15,6 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import roc_curve, roc_auc_score
+data = pd.read_csv(r"C:\Users\Prajwal\Documents\cancer data.csv")
+print(data.head())
+
