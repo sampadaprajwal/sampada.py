@@ -72,9 +72,9 @@ for feature, score in zip(features, importance):
     #ROC curve
     print(model.classes_)
     y_prob= model.predict_proba(X_test) [:, 1]
-    fpr, tpr, threesholds= roc_curve(y_test, y_prob)
-    plt.plot(fpr, tpr)
-    plt.Xlabel ("False Positive Rate")
-    plt.ylabel ("True Positive Rate")
-    plt.title("ROC Curve")
-    plt.show()
+    fpr, tpr, thresholds = roc_curve(y_test, y_prob, pos_label=2)
+plt.plot(fpr, tpr)
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+plt.title("ROC Curve")
+plt.show()
