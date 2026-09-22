@@ -50,17 +50,34 @@ print(X_train.std(axis=0))
 #verify to check that scaling doesnot chnages the no of patients changes just the values
 print(X_train.shape)
 print(X_test.shape)
-#feature selection
-model= RandomForestClassifier(random_state=42)
+# Feature scaling
+
+scaler = StandardScaler()
+
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+
+# Model training
+
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+
 model.fit(X_train, y_train)
-importance= model.feature_importances_
-print(importance)
-features = data.drop("Classification", axis=1).columns
+
+
+# Feature importance
+
+importance = model.feature_importances_
+
+features = X.columns
+
 for feature, score in zip(features, importance):
     print(feature, score)
     #prediction of data
     y_pred= model.predict(X_test)
     print(y_pred)
+    #predict probabality of ech class
+    y_prob = model.predict_proba(X_test)[:, 1]
     #calculate accuracy
     accuracy = accuracy_score(y_test, y_pred)
     print("Accuracy:", accuracy)
